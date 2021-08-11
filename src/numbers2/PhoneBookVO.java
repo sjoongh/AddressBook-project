@@ -1,7 +1,6 @@
 package numbers2;
 
 public class PhoneBookVO {
-	// 이름, 휴대전화, 집전화, 메뉴번호
 	private Long Id;
 	private String Name;
 	private String Hp;
@@ -14,12 +13,7 @@ public class PhoneBookVO {
 	public PhoneBookVO(Long id) {
 		Id = id;
 	}
-//	public void PhoneBookVOI(String name, String hp, String tel) {
-//		this.Name = name;
-//		this.Hp = hp;
-//		this.Tel = tel;
-//	}
-	// 전체 목록
+
 	public PhoneBookVO(String name, String hp, String tel) {
 		Name = name;
 		Hp = hp;

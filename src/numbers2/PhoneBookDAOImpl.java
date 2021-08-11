@@ -86,15 +86,17 @@ public boolean insert(PhoneBookVO vo) {
 public boolean delete(Long id) {
 	Connection conn = null;
 	PreparedStatement pstmt = null;
-	int num = 0;
+	String com = null;
 	int deletedCount = 0;
 	
 	try {
+		// 1. id시퀀스 값 자동 초기화 : delete로 값 삭제후 while문으로 count해서 전화번호부의 총 length구함, data 담음
+		// 2. 시퀀스를 자동정렬 해주는 방법이 따로 없으므로 시퀀스 DROP후 재생성CREATE 코드를 입력(사실상 새로 만듬)
+		// 3. INSERT로 전부 시퀀스에 넣어줌
+		// 4. 삭제된 id값 제외 새로 생성
 		conn = getConnection();
-		
 		pstmt = conn.prepareStatement("DELETE FROM phone_book WHERE id = ?");
 		pstmt.setLong(1, id);
-		
 		deletedCount = pstmt.executeUpdate();
 	} catch (SQLException e) {
 		e.printStackTrace();

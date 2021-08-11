@@ -15,7 +15,6 @@ public class PhoneBookApp {
          System.out.println("---------------------------------");
          System.out.print(">메뉴번호:");
          
-         // 2번 들어갔다나오면 num이 입력값을 못 받음 why?
          int num = sc.nextInt();
          switch(num) {
          case 1:

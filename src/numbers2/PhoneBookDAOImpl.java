@@ -22,6 +22,7 @@ public List<PhoneBookVO> getList() {
 	List<PhoneBookVO> list = new ArrayList<>();
 	
 	Connection conn = null;
+	// 메소드에서 SQL을 넘겨줌, 조회할때만 사용, insert 같은 다른 dml사용시 오류 발생가능성
 	Statement stmt = null;
 	ResultSet rs = null;
 	
@@ -113,17 +114,23 @@ public boolean delete(Long id) {
 
 @Override
 public List<PhoneBookVO> find(String keyword) {
+	// 맨앞은 ArrayList를 안쓰고 List만 써도 ArrayList 사용 가능
 	List<PhoneBookVO> list = new ArrayList<>();
-	
+	// DB연결 객체
 	Connection conn = null;
+	// 객체가 생성될때 SQL문장을 넘겨줌, statement보다 우수
 	PreparedStatement pstmt = null;
+	// executeQuery로 명령하면 ResultSet이라는 객체로 돌려줌
 	ResultSet rs = null;
 	
 	try {
+		// 1. DB연결
 		conn = getConnection();
+		// SQL문장을 pstmt에 담음
 		pstmt = conn.prepareStatement("SELECT name, hp, tel FROM phone_book WHERE name LIKE ?");
 		pstmt.setString(1, "%"+keyword+"%");
 		
+		// ??????? 
 		rs = pstmt.executeQuery();
 		
 		while (rs.next()) {
